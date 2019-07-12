@@ -6,8 +6,6 @@ class CalendarMonth extends Component {
     super(props);
     this.state = {
       currentMonth: moment().format('MMM'), // note: months are indexed starting at 0
-      previousMonth: moment().month() - 1,
-      nextMonth: moment().month() + 1,
       firstSelectedDate: moment().date(),
       lastSelectedDate: null
     };

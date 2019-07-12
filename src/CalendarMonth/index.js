@@ -1,23 +1,36 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class CalendarMonth extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDate: new Date(),
-      currentMonth: 'whatever month is it',
-      firstSelectedDate: 'todays date',
+      currentMonth: moment().format('MMM'), // note: months are indexed starting at 0
+      previousMonth: moment().month() - 1,
+      nextMonth: moment().month() + 1,
+      firstSelectedDate: moment().date(),
       lastSelectedDate: null
     };
   }
+
+  renderDays = () => {};
+
   render() {
+    // console.log(this.state.currentMonth);
+    console.log(moment().format('M'));
     return (
-      <div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column'
+        }}
+      >
         <div>left arrow</div>
-        <div>Month goes here</div>
+        <div>{this.state.currentMonth}</div>
         <div>right arrow</div>
 
-        <div className="days-row">
+        <div className="days-row" style={{ display: 'flex' }}>
           <div>S</div>
           <div>M</div>
           <div>T</div>

@@ -9,24 +9,63 @@ class CalendarMonth extends Component {
     this.state = {
       currentDate: moment(), // gives the current date that we can use to produce additional dates
       currentMonth: moment(), // note: months are indexed starting at 0
-      firstSelectedDate: moment().date(),
+      firstSelectedDate: moment().date(), // gets current day of month #
       lastSelectedDate: null
     };
   }
 
   renderDays = () => {
     let count = 1;
+    let month = [];
     let days = [];
+    const { currentMonth } = this.state;
 
-    while (count <= +this.state.currentMonth.daysInMonth()) {
-      days.push(<div key={count}>{count}</div>);
-      count++;
+    // get day of week that month starts on
+
+    const year = currentMonth.year();
+    const monthIndex = currentMonth.month(); // gives index of current month
+    // get day 1 of month index:
+    let firstDayIndex = new Date(`${year}-${monthIndex + 1}-01`).getDay();
+
+    // add first week with blanks
+    while (days.length < firstDayIndex) {
+      days.push(<div key="empty">empty</div>);
     }
-    return days;
+
+    // now that we added blanks, add real dates, devisible by 7, push onto month & clear days array
+    while (count <= +currentMonth.daysInMonth()) {
+      days.push(
+        <div className="day-box" key={count}>
+          {count}
+        </div>
+      );
+      count++;
+      // if a complete week
+      if (days.length === 7) {
+        month.push(<div className="week">{days}</div>);
+        days = [];
+      }
+    }
+    // add last week incomplete row
+    if (days.length) {
+      while (days.length < 7) {
+        days.push(<div key="empty">empty</div>);
+      }
+      month.push(<div className="week">{days}</div>);
+    }
+    return month;
+  };
+
+  getPreviousMonth = () => {
+    // for rendering
+  };
+
+  getNextMonth = () => {
+    // for rendering
   };
 
   render() {
-    // console.log(this.state.currentMonth);
+    console.log(this.state.currentMonth.year());
     const daysOfWeek = ['S', 'M', 'T', 'W', 'TH', 'F', 'S'];
     const leftArrow = '<';
     return (

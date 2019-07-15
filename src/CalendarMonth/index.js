@@ -29,7 +29,11 @@ class CalendarMonth extends Component {
 
     // add first week with blanks
     while (days.length < firstDayIndex) {
-      days.push(<div key="empty">empty</div>);
+      days.push(
+        <div className="day-box" key="empty">
+          empty
+        </div>
+      );
     }
 
     // now that we added blanks, add real dates, devisible by 7, push onto month & clear days array
@@ -49,7 +53,11 @@ class CalendarMonth extends Component {
     // add last week incomplete row
     if (days.length) {
       while (days.length < 7) {
-        days.push(<div key="empty">empty</div>);
+        days.push(
+          <div className="day-box" key="empty">
+            empty
+          </div>
+        );
       }
       month.push(<div className="week">{days}</div>);
     }

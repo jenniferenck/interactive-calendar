@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
+import './CalendarMonth.css';
+
 class CalendarMonth extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,8 @@ class CalendarMonth extends Component {
 
   render() {
     // console.log(this.state.currentMonth);
-    let leftArrow = '<';
+    const daysOfWeek = ['S', 'M', 'T', 'W', 'TH', 'F', 'S'];
+    const leftArrow = '<';
     return (
       <div
         style={{
@@ -35,7 +38,7 @@ class CalendarMonth extends Component {
         }}
       >
         <div
-          className="top-row"
+          className="month-row"
           style={{
             display: 'flex',
             justifyContent: 'center'
@@ -50,13 +53,13 @@ class CalendarMonth extends Component {
           className="days-row"
           style={{ display: 'flex', justifyContent: 'center' }}
         >
-          <div>S</div>
-          <div>M</div>
-          <div>T</div>
-          <div>W</div>
-          <div>TH</div>
-          <div>F</div>
-          <div>S</div>
+          <div className="day">S</div>
+          <div className="day">M</div>
+          <div className="day">T</div>
+          <div className="day">W</div>
+          <div className="day">TH</div>
+          <div className="day">F</div>
+          <div className="day">S</div>
         </div>
 
         <div className="days-container">{this.renderDays()}</div>

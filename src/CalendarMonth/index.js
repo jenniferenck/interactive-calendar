@@ -17,7 +17,7 @@ class CalendarMonth extends Component {
     let days = [];
 
     while (count <= +this.state.currentMonth.daysInMonth()) {
-      days.push(<div>{count}</div>);
+      days.push(<div key={count}>{count}</div>);
       count++;
     }
     return days;
@@ -25,6 +25,7 @@ class CalendarMonth extends Component {
 
   render() {
     // console.log(this.state.currentMonth);
+    let leftArrow = '<';
     return (
       <div
         style={{
@@ -33,11 +34,22 @@ class CalendarMonth extends Component {
           flexDirection: 'column'
         }}
       >
-        <div>left arrow</div>
-        <div>{this.state.currentMonth.format('MMM')}</div>
-        <div>right arrow</div>
+        <div
+          className="top-row"
+          style={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          <div>{leftArrow}</div>
+          <div>{this.state.currentMonth.format('MMM')}</div>
+          <div>></div>
+        </div>
 
-        <div className="days-row" style={{ display: 'flex' }}>
+        <div
+          className="days-row"
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
           <div>S</div>
           <div>M</div>
           <div>T</div>

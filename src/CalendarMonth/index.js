@@ -73,33 +73,16 @@ class CalendarMonth extends Component {
   };
 
   render() {
-    console.log(this.state.currentMonth.year());
-    const daysOfWeek = ['S', 'M', 'T', 'W', 'TH', 'F', 'S'];
     const leftArrow = '<';
     return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          flexDirection: 'column'
-        }}
-      >
-        <div
-          className="month-row"
-          style={{
-            display: 'flex',
-            justifyContent: 'center'
-          }}
-        >
+      <div className="calendar">
+        <div className="month-row">
           <div>{leftArrow}</div>
           <div>{this.state.currentMonth.format('MMM')}</div>
           <div>></div>
         </div>
 
-        <div
-          className="days-row"
-          style={{ display: 'flex', justifyContent: 'center' }}
-        >
+        <div className="days-row">
           <div className="day">S</div>
           <div className="day">M</div>
           <div className="day">T</div>

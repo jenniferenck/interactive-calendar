@@ -5,17 +5,26 @@ class CalendarMonth extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentMonth: moment().format('MMM'), // note: months are indexed starting at 0
+      currentDate: moment(), // gives the current date that we can use to produce additional dates
+      currentMonth: moment(), // note: months are indexed starting at 0
       firstSelectedDate: moment().date(),
       lastSelectedDate: null
     };
   }
 
-  renderDays = () => {};
+  renderDays = () => {
+    let count = 1;
+    let days = [];
+
+    while (count <= +this.state.currentMonth.daysInMonth()) {
+      days.push(<div>{count}</div>);
+      count++;
+    }
+    return days;
+  };
 
   render() {
     // console.log(this.state.currentMonth);
-    console.log(moment().format('M'));
     return (
       <div
         style={{
@@ -25,7 +34,7 @@ class CalendarMonth extends Component {
         }}
       >
         <div>left arrow</div>
-        <div>{this.state.currentMonth}</div>
+        <div>{this.state.currentMonth.format('MMM')}</div>
         <div>right arrow</div>
 
         <div className="days-row" style={{ display: 'flex' }}>
@@ -38,9 +47,7 @@ class CalendarMonth extends Component {
           <div>S</div>
         </div>
 
-        <div className="days-container">
-          {/* take whatever month it currently is and map thru all the dates of the month */}
-        </div>
+        <div className="days-container">{this.renderDays()}</div>
       </div>
     );
   }

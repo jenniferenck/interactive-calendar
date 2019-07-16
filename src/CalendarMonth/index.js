@@ -18,7 +18,7 @@ class CalendarMonth extends Component {
     let count = 1;
     let month = [];
     let days = [];
-    const { currentMonth } = this.state;
+    const { currentMonth, firstSelectedDate } = this.state;
 
     // get day of week that month starts on
 
@@ -38,11 +38,17 @@ class CalendarMonth extends Component {
 
     // now that we added blanks, add real dates, devisible by 7, push onto month & clear days array
     while (count <= +currentMonth.daysInMonth()) {
-      days.push(
-        <div className="day-box" key={count}>
-          {count}
-        </div>
-      );
+      count === firstSelectedDate
+        ? days.push(
+            <div className="day-box" id="active-date" key={count}>
+              {count}
+            </div>
+          )
+        : days.push(
+            <div className="day-box" key={count}>
+              {count}
+            </div>
+          );
       count++;
       // if a complete week
       if (days.length === 7) {
@@ -73,6 +79,7 @@ class CalendarMonth extends Component {
   };
 
   render() {
+    console.log(this.state.firstSelectedDate);
     const leftArrow = '<';
     return (
       <div className="calendar">

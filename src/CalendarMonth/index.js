@@ -21,6 +21,7 @@ class CalendarMonth extends Component {
     return new Date(`${year}-${monthIndex + 1}-01`).getDay();
   };
 
+  // will need to refactor so this can be used for rendering previous and next months
   renderDays = () => {
     let dayCount = 1;
     let month = [];
@@ -29,7 +30,7 @@ class CalendarMonth extends Component {
 
     const firstDayIndex = this.getFirstDayOfMonth(currentMonth);
 
-    // add first week with blanks
+    // add first week starting with blanks for previous month
     while (days.length < firstDayIndex) {
       days.push(
         <div className="day-box" key="empty">
@@ -38,7 +39,7 @@ class CalendarMonth extends Component {
       );
     }
 
-    // now that we added blanks, add real dates, devisible by 7, push onto month & clear days array
+    // add real dates, devisible by 7, push onto month & clear days array
     while (dayCount <= +currentMonth.daysInMonth()) {
       dayCount === firstSelectedDate
         ? days.push(

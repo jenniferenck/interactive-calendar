@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 
 import './CalendarMonth.css';
+import CalendarDay from '../CalendarDay';
 
 class CalendarMonth extends Component {
   constructor(props) {
@@ -32,25 +33,24 @@ class CalendarMonth extends Component {
 
     // add first week starting with blanks for previous month
     while (days.length < firstDayIndex) {
-      days.push(
-        <div className="day-box" key="empty">
-          empty
-        </div>
-      );
+      days.push(<CalendarDay key={currentMonth.date(dayCount)} dayCount="" />);
     }
 
     // add real dates, devisible by 7, push onto month & clear days array
     while (dayCount <= +currentMonth.daysInMonth()) {
       dayCount === firstSelectedDate
         ? days.push(
-            <div className="day-box" id="active-date" key={dayCount}>
-              {dayCount}
-            </div>
+            <CalendarDay
+              selectedDate
+              key={currentMonth.date(dayCount)}
+              dayCount={dayCount}
+            />
           )
         : days.push(
-            <div className="day-box" key={dayCount}>
-              {dayCount}
-            </div>
+            <CalendarDay
+              key={currentMonth.date(dayCount)}
+              dayCount={dayCount}
+            />
           );
       dayCount++;
       // if a complete week
@@ -63,9 +63,7 @@ class CalendarMonth extends Component {
     if (days.length) {
       while (days.length < 7) {
         days.push(
-          <div className="day-box" key="empty">
-            empty
-          </div>
+          <CalendarDay key={currentMonth.date(dayCount)} dayCount="" />
         );
       }
       month.push(<div className="week">{days}</div>);
@@ -82,7 +80,7 @@ class CalendarMonth extends Component {
   };
 
   render() {
-    console.log(this.state.firstSelectedDate);
+    console.log(this.state.currentMonth.date(1));
     const leftArrow = '<';
     return (
       <div className="calendar">

@@ -22,6 +22,10 @@ class CalendarMonth extends Component {
     return new Date(`${year}-${monthIndex + 1}-01`).getDay();
   };
 
+  changeDateSelectionRange = dayCount => {
+    console.log('day selected:', dayCount);
+  };
+
   // will need to refactor so this can be used for rendering previous and next months
   renderDays = () => {
     let dayCount = 1;
@@ -33,7 +37,13 @@ class CalendarMonth extends Component {
 
     // add first week starting with blanks for previous month
     while (days.length < firstDayIndex) {
-      days.push(<CalendarDay key={currentMonth.date(dayCount)} dayCount="" />);
+      days.push(
+        <CalendarDay
+          key={currentMonth.date(dayCount)}
+          dayCount=""
+          changeDateSelectionRange={this.changeDateSelectionRange}
+        />
+      );
     }
 
     // add real dates, devisible by 7, push onto month & clear days array
@@ -44,12 +54,14 @@ class CalendarMonth extends Component {
               selectedDate
               key={currentMonth.date(dayCount)}
               dayCount={dayCount}
+              changeDateSelectionRange={this.changeDateSelectionRange}
             />
           )
         : days.push(
             <CalendarDay
               key={currentMonth.date(dayCount)}
               dayCount={dayCount}
+              changeDateSelectionRange={this.changeDateSelectionRange}
             />
           );
       dayCount++;
@@ -67,7 +79,11 @@ class CalendarMonth extends Component {
     if (days.length) {
       while (days.length < 7) {
         days.push(
-          <CalendarDay key={currentMonth.date(dayCount)} dayCount="" />
+          <CalendarDay
+            key={currentMonth.date(dayCount)}
+            dayCount=""
+            changeDateSelectionRange={this.changeDateSelectionRange}
+          />
         );
       }
       month.push(

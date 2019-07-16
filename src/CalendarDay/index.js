@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 
 class CalendarDay extends Component {
-  handleSelect = () => {
-    //   function to call helper functions for determining logic of selections
+  handleSelect = dayCount => {
+    if (dayCount) {
+      this.props.changeDateSelectionRange(dayCount);
+    }
   };
 
   render() {
+    const { dayCount } = this.props;
     return (
       <>
         {this.props.selectedDate ? (
-          <div className="day-box" id="active-date" key={this.props.dayCount}>
-            {this.props.dayCount}
+          <div
+            className="day-box"
+            id="active-date"
+            key={dayCount}
+            onClick={() => this.handleSelect(dayCount)}
+          >
+            {dayCount}
           </div>
         ) : (
           <div
             className="day-box"
-            key={this.props.dayCount}
-            id={this.props.dayCount}
+            key={dayCount}
+            id={dayCount}
+            onClick={() => this.handleSelect(dayCount)}
           >
-            {this.props.dayCount}
+            {dayCount}
           </div>
         )}
       </>

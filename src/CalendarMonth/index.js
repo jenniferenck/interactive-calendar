@@ -15,7 +15,7 @@ class CalendarMonth extends Component {
   }
 
   renderDays = () => {
-    let count = 1;
+    let dayCount = 1;
     let month = [];
     let days = [];
     const { currentMonth, firstSelectedDate } = this.state;
@@ -37,19 +37,19 @@ class CalendarMonth extends Component {
     }
 
     // now that we added blanks, add real dates, devisible by 7, push onto month & clear days array
-    while (count <= +currentMonth.daysInMonth()) {
-      count === firstSelectedDate
+    while (dayCount <= +currentMonth.daysInMonth()) {
+      dayCount === firstSelectedDate
         ? days.push(
-            <div className="day-box" id="active-date" key={count}>
-              {count}
+            <div className="day-box" id="active-date" key={dayCount}>
+              {dayCount}
             </div>
           )
         : days.push(
-            <div className="day-box" key={count}>
-              {count}
+            <div className="day-box" key={dayCount}>
+              {dayCount}
             </div>
           );
-      count++;
+      dayCount++;
       // if a complete week
       if (days.length === 7) {
         month.push(<div className="week">{days}</div>);

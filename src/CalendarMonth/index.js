@@ -27,7 +27,7 @@ class CalendarMonth extends Component {
     let dayCount = 1;
     let month = [];
     let days = [];
-    const { currentMonth, firstSelectedDate } = this.state;
+    const { currentMonth, firstSelectedDate, lastSelectedDate } = this.state;
 
     const firstDayIndex = this.getFirstDayOfMonth(currentMonth);
 
@@ -38,7 +38,7 @@ class CalendarMonth extends Component {
 
     // add real dates, devisible by 7, push onto month & clear days array
     while (dayCount <= +currentMonth.daysInMonth()) {
-      dayCount === firstSelectedDate
+      dayCount === firstSelectedDate || dayCount === lastSelectedDate
         ? days.push(
             <CalendarDay
               selectedDate

@@ -14,18 +14,20 @@ class CalendarMonth extends Component {
     };
   }
 
+  getFirstDayOfMonth = currentMonth => {
+    const year = currentMonth.year();
+    const monthIndex = currentMonth.month(); // gives index of current month
+    // get day 1 of month index:
+    return new Date(`${year}-${monthIndex + 1}-01`).getDay();
+  };
+
   renderDays = () => {
     let dayCount = 1;
     let month = [];
     let days = [];
     const { currentMonth, firstSelectedDate } = this.state;
 
-    // get day of week that month starts on
-
-    const year = currentMonth.year();
-    const monthIndex = currentMonth.month(); // gives index of current month
-    // get day 1 of month index:
-    let firstDayIndex = new Date(`${year}-${monthIndex + 1}-01`).getDay();
+    const firstDayIndex = this.getFirstDayOfMonth(currentMonth);
 
     // add first week with blanks
     while (days.length < firstDayIndex) {

@@ -55,7 +55,11 @@ class CalendarMonth extends Component {
       dayCount++;
       // if a complete week
       if (days.length === 7) {
-        month.push(<div className="week">{days}</div>);
+        month.push(
+          <div key={month.length} className="week">
+            {days}
+          </div>
+        );
         days = [];
       }
     }
@@ -66,7 +70,11 @@ class CalendarMonth extends Component {
           <CalendarDay key={currentMonth.date(dayCount)} dayCount="" />
         );
       }
-      month.push(<div className="week">{days}</div>);
+      month.push(
+        <div key={month.length} className="week">
+          {days}
+        </div>
+      );
     }
     return month;
   };

@@ -24,6 +24,24 @@ class CalendarMonth extends Component {
 
   changeDateSelectionRange = dayCount => {
     console.log('day selected:', dayCount);
+    const { firstSelectedDate, lastSelectedDate } = this.state;
+    // check first if last is selected yet, if not, continue
+    if (!lastSelectedDate) {
+      // check if date is after firstSelected date -> make lastSelectedDate
+      if (dayCount > firstSelectedDate) {
+        this.setState({ lastSelectedDate: dayCount });
+      }
+      if (dayCount < firstSelectedDate) {
+        this.setState({
+          lastSelectedDate: firstSelectedDate,
+          firstSelectedDate: dayCount
+        });
+      }
+    } else {
+      this.setState({ firstSelectedDate: dayCount });
+    }
+
+    // if LAST IS SELECTED, reset selection to firstSelected and lastSelected to null
   };
 
   // will need to refactor so this can be used for rendering previous and next months
@@ -104,7 +122,7 @@ class CalendarMonth extends Component {
   };
 
   render() {
-    console.log(this.state.currentMonth.date(1));
+    console.log(this.state);
     const leftArrow = '<';
     return (
       <div className="calendar">

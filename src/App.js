@@ -12,8 +12,8 @@ class App extends Component {
     if (this.state.calendarView === 'month') {
       return (
         <>
-          <CalendarMonth />
-          <CalendarMonth />
+          <CalendarMonth firstMonth />
+          <CalendarMonth secondMonth />
         </>
       );
     }

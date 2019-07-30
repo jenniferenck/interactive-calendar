@@ -1,4 +1,4 @@
-.calendar {
+.month {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -22,7 +22,6 @@
   position: relative;
   width: 52px;
   height: 52px;
-  top: 50%;
 }
 
 .week {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MonthView from '../MonthView';
 
+import './Calendar.css';
+
 class Calendar extends Component {
   renderCurrentCalendarView = () => {
     if (this.state.calendarView === 'month') {
@@ -15,7 +17,7 @@ class Calendar extends Component {
 
   render() {
     return (
-      <div>
+      <div className="calendar">
         <MonthView />
         <MonthView />
       </div>

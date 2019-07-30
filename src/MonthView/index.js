@@ -135,7 +135,7 @@ class MonthView extends Component {
     console.log(this.state);
     const leftArrow = '<';
     return (
-      <div className="calendar">
+      <div className="month">
         <div className="month-row">
           <div>{leftArrow}</div>
           <div>{this.state.currentDateObj.format('MMM')}</div>

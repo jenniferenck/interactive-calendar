@@ -1,31 +1,19 @@
 import React, { Component } from 'react';
+import Calendar from './Calendar';
+
 import './App.css';
-import CalendarMonth from './CalendarMonth';
 
 class App extends Component {
+  // can we revert this component back to a function and use hooks?
   constructor(props) {
     super(props);
     this.state = { calendarView: 'month' }; // options to view month, week or day
   }
 
-  renderCurrentCalendarView = () => {
-    if (this.state.calendarView === 'month') {
-      return (
-        <>
-          <CalendarMonth firstMonth />
-          <CalendarMonth secondMonth />
-        </>
-      );
-    }
-  };
-
   render() {
     return (
       <div className="App">
-        {/* display current month first followed by suceeding month */}
-        {this.renderCurrentCalendarView()}
-
-        {/* <CalendarMonth /> */}
+        <Calendar calendarView />
       </div>
     );
   }

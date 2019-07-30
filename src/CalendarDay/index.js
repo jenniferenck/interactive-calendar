@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './CalendarDay.css';
 
 class CalendarDay extends Component {
   handleSelect = dayCount => {

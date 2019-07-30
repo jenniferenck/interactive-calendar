@@ -5,11 +5,11 @@
   border: solid gray 1px;
 }
 
-.day-box,
-.in-between {
-  background-color: aliceblue;
+#selected-date {
+  background-color: bisque;
+  border-radius: 10px;
 }
 
-#active-date {
-  background-color: salmon;
+.day-box.between-range {
+  background-color: aliceblue;
 }

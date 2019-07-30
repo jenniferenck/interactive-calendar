@@ -25,13 +25,6 @@
   top: 50%;
 }
 
-.day-box {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  border: solid gray 1px;
-}
-
 .week {
   display: flex;
   flex-direction: row;
@@ -42,8 +35,4 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-#active-date {
-  background-color: salmon;
 }

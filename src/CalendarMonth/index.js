@@ -80,11 +80,12 @@ class CalendarMonth extends Component {
               ? true
               : false
           }
-          between-range={
+          betweenRange={
             dayCount > firstSelectedDate && dayCount < lastSelectedDate
               ? true
               : false
           }
+          isTodaysDate={dayCount === currentDate ? true : false}
           key={currentDateObj.date(dayCount)}
           dayCount={dayCount}
           changeDateSelectionRange={this.changeDateSelectionRange}

@@ -9,18 +9,17 @@ class CalendarDay extends Component {
   };
 
   render() {
-    const { dayCount } = this.props;
+    const { dayCount, selectedDate, betweenRange, isTodaysDate } = this.props;
     return (
-      <>
-        <div
-          className="day-box"
-          id={this.props.selectedDate ? `active-date` : dayCount}
-          key={dayCount}
-          onClick={() => this.handleSelect(dayCount)}
-        >
-          {dayCount}
-        </div>
-      </>
+      <div
+        className={betweenRange ? `day-box between-range` : `day-box`}
+        id={selectedDate ? `selected-date` : dayCount}
+        key={dayCount}
+        style={isTodaysDate ? { backgroundColor: 'lightgray' } : {}}
+        onClick={() => this.handleSelect(dayCount)}
+      >
+        {dayCount}
+      </div>
     );
   }
 }

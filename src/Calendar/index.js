@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+
 import MonthView from '../MonthView';
 
 import './Calendar.css';
@@ -7,10 +9,10 @@ class Calendar extends Component {
   renderCurrentCalendarView = () => {
     if (this.state.calendarView === 'month') {
       return (
-        <>
+        <div className="calendar">
           <MonthView firstMonth />
           <MonthView secondMonth />
-        </>
+        </div>
       );
     }
   };
@@ -18,8 +20,8 @@ class Calendar extends Component {
   render() {
     return (
       <div className="calendar">
-        <MonthView />
-        <MonthView />
+        <MonthView monthOrder="firstMonth" />
+        <MonthView monthOrder="secondMonth" />
       </div>
     );
   }

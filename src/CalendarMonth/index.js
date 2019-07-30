@@ -49,14 +49,18 @@ class CalendarMonth extends Component {
     let dayCount = 1;
     let month = [];
     let days = [];
-    const { currentDateObj, firstSelectedDate, lastSelectedDate } = this.state;
+    const {
+      currentDateObj,
+      firstSelectedDate,
+      lastSelectedDate,
+      currentDate
+    } = this.state;
 
     const firstDayIndex = this.getFirstDayOfMonth(currentDateObj);
 
     // add first week starting with blanks for previous month
     let blankDatesCount = 1;
     while (days.length < firstDayIndex) {
-      console.log('blank date,', blankDatesCount);
       days.push(
         <CalendarDay
           key={blankDatesCount}
@@ -69,22 +73,23 @@ class CalendarMonth extends Component {
 
     // add real dates, devisible by 7, push onto month & clear days array
     while (dayCount <= +currentDateObj.daysInMonth()) {
-      dayCount === firstSelectedDate || dayCount === lastSelectedDate
-        ? days.push(
-            <CalendarDay
-              selectedDate
-              key={currentDateObj.date(dayCount)}
-              dayCount={dayCount}
-              changeDateSelectionRange={this.changeDateSelectionRange}
-            />
-          )
-        : days.push(
-            <CalendarDay
-              key={currentDateObj.date(dayCount)}
-              dayCount={dayCount}
-              changeDateSelectionRange={this.changeDateSelectionRange}
-            />
-          );
+      days.push(
+        <CalendarDay
+          selectedDate={
+            dayCount === firstSelectedDate || dayCount === lastSelectedDate
+              ? true
+              : false
+          }
+          between-range={
+            dayCount > firstSelectedDate && dayCount < lastSelectedDate
+              ? true
+              : false
+          }
+          key={currentDateObj.date(dayCount)}
+          dayCount={dayCount}
+          changeDateSelectionRange={this.changeDateSelectionRange}
+        />
+      );
       dayCount++;
       // if a complete week
       if (days.length === 7) {

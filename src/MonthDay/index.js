@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './CalendarDay.css';
+import './MonthDay.css';
 
-class CalendarDay extends Component {
+class MonthDay extends Component {
   handleSelect = dayCount => {
     if (dayCount) {
       this.props.changeDateSelectionRange(dayCount);
@@ -24,4 +24,4 @@ class CalendarDay extends Component {
   }
 }
 
-export default CalendarDay;
+export default MonthDay;

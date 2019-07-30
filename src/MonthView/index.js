@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
-import './CalendarMonth.css';
-import CalendarDay from '../CalendarDay';
+import './MonthView.css';
+import MonthDay from '../MonthDay';
 
-class CalendarMonth extends Component {
+class MonthView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +62,7 @@ class CalendarMonth extends Component {
     let blankDatesCount = 1;
     while (days.length < firstDayIndex) {
       days.push(
-        <CalendarDay
+        <MonthDay
           key={blankDatesCount}
           dayCount=""
           changeDateSelectionRange={this.changeDateSelectionRange}
@@ -74,7 +74,7 @@ class CalendarMonth extends Component {
     // add real dates, devisible by 7, push onto month & clear days array
     while (dayCount <= +currentDateObj.daysInMonth()) {
       days.push(
-        <CalendarDay
+        <MonthDay
           selectedDate={
             dayCount === firstSelectedDate || dayCount === lastSelectedDate
               ? true
@@ -106,7 +106,7 @@ class CalendarMonth extends Component {
     if (days.length) {
       while (days.length < 7) {
         days.push(
-          <CalendarDay
+          <MonthDay
             key={blankDatesCount}
             dayCount=""
             changeDateSelectionRange={this.changeDateSelectionRange}
@@ -158,4 +158,4 @@ class CalendarMonth extends Component {
   }
 }
 
-export default CalendarMonth;
+export default MonthView;

@@ -8,15 +8,16 @@ class CalendarMonth extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDate: moment(), // gives the current date that we can use to produce additional dates
-      firstSelectedDate: moment().date(), // gets current day of month #
+      currentDateObj: moment(), // gives the current date that we can use to produce additional dates
+      currentDate: moment().date(),
+      firstSelectedDate: null, // gets current day of month #
       lastSelectedDate: null
     };
   }
 
-  getFirstDayOfMonth = currentDate => {
-    const year = currentDate.year();
-    const monthIndex = currentDate.month(); // gives index of current month
+  getFirstDayOfMonth = currentDateObj => {
+    const year = currentDateObj.year();
+    const monthIndex = currentDateObj.month(); // gives index of current month
     // get day 1 of month index:
     return new Date(`${year}-${monthIndex + 1}-01`).getDay();
   };
@@ -48,9 +49,9 @@ class CalendarMonth extends Component {
     let dayCount = 1;
     let month = [];
     let days = [];
-    const { currentDate, firstSelectedDate, lastSelectedDate } = this.state;
+    const { currentDateObj, firstSelectedDate, lastSelectedDate } = this.state;
 
-    const firstDayIndex = this.getFirstDayOfMonth(currentDate);
+    const firstDayIndex = this.getFirstDayOfMonth(currentDateObj);
 
     // add first week starting with blanks for previous month
     let blankDatesCount = 1;
@@ -67,19 +68,19 @@ class CalendarMonth extends Component {
     }
 
     // add real dates, devisible by 7, push onto month & clear days array
-    while (dayCount <= +currentDate.daysInMonth()) {
+    while (dayCount <= +currentDateObj.daysInMonth()) {
       dayCount === firstSelectedDate || dayCount === lastSelectedDate
         ? days.push(
             <CalendarDay
               selectedDate
-              key={currentDate.date(dayCount)}
+              key={currentDateObj.date(dayCount)}
               dayCount={dayCount}
               changeDateSelectionRange={this.changeDateSelectionRange}
             />
           )
         : days.push(
             <CalendarDay
-              key={currentDate.date(dayCount)}
+              key={currentDateObj.date(dayCount)}
               dayCount={dayCount}
               changeDateSelectionRange={this.changeDateSelectionRange}
             />
@@ -131,7 +132,7 @@ class CalendarMonth extends Component {
       <div className="calendar">
         <div className="month-row">
           <div>{leftArrow}</div>
-          <div>{this.state.currentDate.format('MMM')}</div>
+          <div>{this.state.currentDateObj.format('MMM')}</div>
           <div>></div>
         </div>
 

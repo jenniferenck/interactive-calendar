@@ -15,13 +15,6 @@ class MonthView extends Component {
     };
   }
 
-  getFirstDayOfMonth = currentDateObj => {
-    const year = currentDateObj.year();
-    const monthIndex = currentDateObj.month(); // gives index of current month
-    // get day 1 of month index:
-    return new Date(`${year}-${monthIndex + 1}-01`).getDay();
-  };
-
   changeDateSelectionRange = dayCount => {
     console.log('day selected:', dayCount);
     const { firstSelectedDate, lastSelectedDate } = this.state;
@@ -42,6 +35,13 @@ class MonthView extends Component {
     }
 
     // if LAST IS SELECTED, reset selection to firstSelected and lastSelected to null
+  };
+
+  getFirstDayOfMonth = currentDateObj => {
+    const year = currentDateObj.year();
+    const monthIndex = currentDateObj.month(); // gives index of current month
+    // get day 1 of month index:
+    return new Date(`${year}-${monthIndex + 1}-01`).getDay();
   };
 
   // will need to refactor so this can be used for rendering previous and next months

@@ -66,7 +66,7 @@ class MonthView extends Component {
     }
 
     const daysInMonth = +moment(
-      `${year}, ${monthIndex}`,
+      `${year}, ${monthIndex + 1}`,
       'YYYY, MM'
     ).daysInMonth();
 

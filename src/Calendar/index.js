@@ -32,7 +32,10 @@ class Calendar extends Component {
         <div>Next Month</div>
 
         <MonthView monthIndex={firstMonthIndex} year={firstYear} />
-        <MonthView monthIndex={this.getSecondMonth} year={this.getSecondYear} />
+        <MonthView
+          monthIndex={this.getSecondMonth()}
+          year={this.getSecondYear()}
+        />
       </div>
     );
   }

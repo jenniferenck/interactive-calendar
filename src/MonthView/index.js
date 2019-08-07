@@ -131,13 +131,17 @@ class MonthView extends Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.props);
     const leftArrow = '<';
     return (
       <div className="month">
         <div className="month-row">
           <div>{leftArrow}</div>
-          <div>{this.state.currentDateObj.format('MMM')}</div>
+          <div>
+            {moment()
+              .month(this.props.monthIndex)
+              .format('MMM')}
+          </div>
           <div>></div>
         </div>
 

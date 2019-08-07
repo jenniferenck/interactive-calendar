@@ -8,7 +8,6 @@ class MonthView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDateObj: moment(), // gives the current date that we can use to produce additional dates
       currentDate: moment().date(),
       firstSelectedDate: null, // gets current day of month #
       lastSelectedDate: null
@@ -48,12 +47,8 @@ class MonthView extends Component {
     let dayCount = 1;
     let month = [];
     let days = [];
-    const {
-      currentDateObj,
-      firstSelectedDate,
-      lastSelectedDate,
-      currentDate
-    } = this.state;
+    const { firstSelectedDate, lastSelectedDate, currentDate } = this.state;
+    const { monthIndex, year } = this.props;
 
     const firstDayIndex = this.getFirstDayOfMonth();
 
@@ -70,8 +65,14 @@ class MonthView extends Component {
       blankDatesCount++;
     }
 
+    const daysInMonth = +moment(
+      `${year}, ${monthIndex}`,
+      'YYYY, MM'
+    ).daysInMonth();
+
     // add real dates, devisible by 7, push onto month & clear days array
-    while (dayCount <= +currentDateObj.daysInMonth()) {
+
+    while (dayCount <= daysInMonth) {
       days.push(
         <MonthDay
           selectedDate={
@@ -84,8 +85,9 @@ class MonthView extends Component {
               ? true
               : false
           }
+          // today's count needs to take into place current day, month and year
           isTodaysDate={dayCount === currentDate ? true : false}
-          key={currentDateObj.date(dayCount)}
+          key={`${dayCount} ${monthIndex}, ${year}`}
           dayCount={dayCount}
           changeDateSelectionRange={this.changeDateSelectionRange}
         />
@@ -123,7 +125,6 @@ class MonthView extends Component {
   };
 
   render() {
-    console.log(this.props);
     const leftArrow = '<';
     return (
       <div className="month">

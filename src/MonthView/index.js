@@ -55,7 +55,7 @@ class MonthView extends Component {
       currentDate
     } = this.state;
 
-    const firstDayIndex = this.getFirstDayOfMonth(currentDateObj);
+    const firstDayIndex = this.getFirstDayOfMonth();
 
     // add first week starting with blanks for previous month
     let blankDatesCount = 1;
@@ -120,14 +120,6 @@ class MonthView extends Component {
       );
     }
     return month;
-  };
-
-  getPreviousMonth = () => {
-    // for rendering
-  };
-
-  getNextMonth = () => {
-    // for rendering
   };
 
   render() {

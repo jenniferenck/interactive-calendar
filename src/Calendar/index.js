@@ -28,14 +28,18 @@ class Calendar extends Component {
     const { firstMonthIndex, firstYear } = this.state;
     return (
       <div className="calendar">
-        <div>Previous Month</div>
-        <div>Next Month</div>
+        <div className="arrows">
+          <div className="left-arrow">Previous Month</div>
+          <div className="right-arrow">Next Month</div>
+        </div>
 
-        <MonthView monthIndex={firstMonthIndex} year={firstYear} />
-        <MonthView
-          monthIndex={this.getSecondMonth()}
-          year={this.getSecondYear()}
-        />
+        <div className="months">
+          <MonthView monthIndex={firstMonthIndex} year={firstYear} />
+          <MonthView
+            monthIndex={this.getSecondMonth()}
+            year={this.getSecondYear()}
+          />
+        </div>
       </div>
     );
   }

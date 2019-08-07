@@ -37,9 +37,8 @@ class MonthView extends Component {
     // if LAST IS SELECTED, reset selection to firstSelected and lastSelected to null
   };
 
-  getFirstDayOfMonth = currentDateObj => {
-    const year = currentDateObj.year();
-    const monthIndex = currentDateObj.month(); // gives index of current month
+  getFirstDayOfMonth = () => {
+    const { year, monthIndex } = this.props;
     // get day 1 of month index:
     return new Date(`${year}-${monthIndex + 1}-01`).getDay();
   };

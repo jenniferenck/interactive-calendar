@@ -6,22 +6,33 @@ import MonthView from '../MonthView';
 import './Calendar.css';
 
 class Calendar extends Component {
-  renderCurrentCalendarView = () => {
-    if (this.state.calendarView === 'month') {
-      return (
-        <div className="calendar">
-          <MonthView firstMonth />
-          <MonthView secondMonth />
-        </div>
-      );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstMonthIndex: moment().month(),
+      firstYear: moment().year()
+    };
+  }
+
+  getSecondMonth = () => {
+    const { firstMonthIndex } = this.state;
+    return firstMonthIndex < 11 ? firstMonthIndex + 1 : 0;
+  };
+
+  getSecondYear = () => {
+    const { firstMonthIndex, firstYear } = this.state;
+    return firstMonthIndex < 11 ? firstYear : firstYear + 1;
   };
 
   render() {
+    const { firstMonthIndex, firstYear } = this.state;
     return (
       <div className="calendar">
-        <MonthView monthOrder="firstMonth" />
-        <MonthView monthOrder="secondMonth" />
+        <div>Previous Month</div>
+        <div>Next Month</div>
+
+        <MonthView monthIndex={firstMonthIndex} year={firstYear} />
+        <MonthView monthIndex={this.getSecondMonth} year={this.getSecondYear} />
       </div>
     );
   }

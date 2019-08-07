@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To install:
+
+Run: `npm install`
+
+## Relevant docs:
+
+moment.js:
+
+https://momentjs.com/docs/
+
 ## Available Scripts
 
 In the project directory, you can run:

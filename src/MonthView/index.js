@@ -39,7 +39,8 @@ class MonthView extends Component {
   getFirstDayOfMonth = () => {
     const { year, monthIndex } = this.props;
     // get day 1 of month index:
-    return new Date(`${year}-${monthIndex + 1}-01`).getDay();
+
+    return moment(`${year}-${monthIndex + 1}-01`, 'YYYY-MM-DD').weekday();
   };
 
   // will need to refactor so this can be used for rendering previous and next months
@@ -51,6 +52,7 @@ class MonthView extends Component {
     const { monthIndex, year } = this.props;
 
     const firstDayIndex = this.getFirstDayOfMonth();
+    // console.log('firstDayIndex', firstDayIndex);
 
     // add first week starting with blanks for previous month
     let blankDatesCount = 1;
@@ -125,6 +127,7 @@ class MonthView extends Component {
   };
 
   render() {
+    // console.log(this.props);
     const leftArrow = '<';
     return (
       <div className="month">
